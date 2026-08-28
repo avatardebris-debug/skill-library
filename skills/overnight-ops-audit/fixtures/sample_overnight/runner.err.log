@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "pipeline/run_loop_health.py", line 655, in tick_project_metrics
+    except Exception:
+NameError: name 'soft_log_exc' is not defined

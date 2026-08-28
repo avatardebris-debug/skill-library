@@ -1,0 +1,4 @@
+start 2026-08-06T05:00:00Z
+cmd: python -u -m pipeline.runner --time-limit 15
+PYTHONPATH=C:\factory
+end 2026-08-06T05:08:00Z exit=1
