@@ -1,0 +1,129 @@
+{
+  "schema": "qc_honesty_fixtures.manifest.v0",
+  "purpose": "measure_only_qc_adversarial_and_allowlist",
+  "never_train": true,
+  "train_weight": 0,
+  "corpus_exclude": true,
+  "session_distill_exclude": true,
+  "goal_trace_exclude": true,
+  "finetune_exclude": true,
+  "not_product_code": true,
+  "location": ".grok/skills/qc-honesty/fixtures/",
+  "forbidden_locations": [
+    "pipeline/",
+    "workspace/",
+    "projects/"
+  ],
+  "usage": [
+    "python .grok/skills/qc-honesty/scripts/run_honesty.py --repo-root . --fixture-mode",
+    "pytest test_qc_honesty.py test_adversarial_lite.py -q"
+  ],
+  "does_not_claim": [
+    "scalable_oversight_complete",
+    "AGI_safety_complete",
+    "train_from_adversarial_fixtures",
+    "defect_flywheel"
+  ],
+  "phase_4_fp_lock": {
+    "rules": ["H05_auto_lfg", "H07_auto_promote", "H10_outer_rsi_unlock"],
+    "good_expected_rules": [],
+    "bad_true_stamps": [
+      "auto_lfg=True",
+      "auto_promote=True",
+      "outer_rsi=True",
+      "outer_rsi_unlock=True",
+      "unlock_outer_rsi=True"
+    ]
+  },
+  "files": {
+    "bad_honesty_smells.py": {
+      "kind": "adversarial_bad",
+      "marker": "honesty-fixture-bad",
+      "never_train": true,
+      "covers": [
+        "auto_lfg_true",
+        "auto_promote_true",
+        "outer_rsi_true_unlock_forms"
+      ],
+      "expected_rules": [
+        "H01_field_proven_true",
+        "H05_auto_lfg",
+        "H07_auto_promote",
+        "H10_outer_rsi_unlock"
+      ]
+    },
+    "bad_dual_gate_smells.py": {
+      "kind": "adversarial_bad",
+      "marker": "honesty-fixture-bad",
+      "never_train": true,
+      "covers": [
+        "field_proven_true",
+        "complete_as_field_collapse",
+        "invent_human_verdict_stamp",
+        "auto_lfg_true",
+        "auto_promote_true_and_call",
+        "outer_rsi_unlock_true"
+      ],
+      "expected_rules": [
+        "H01_field_proven_true",
+        "H02_field_proven_true_json",
+        "H03_goal_proven_human_auto",
+        "H05_auto_lfg",
+        "H07_auto_promote",
+        "H10_outer_rsi_unlock"
+      ]
+    },
+    "bad_soft_pass_smells.py": {
+      "kind": "adversarial_bad",
+      "marker": "honesty-fixture-bad",
+      "never_train": true,
+      "covers": [
+        "auto_lfg_execute",
+        "auto_promote_true",
+        "accept_equals_execute",
+        "soft_residual_equals_product_complete",
+        "invent_human_verdict_stamp"
+      ],
+      "expected_rules": [
+        "H05_auto_lfg",
+        "H06_accept_equals_execute",
+        "H07_auto_promote",
+        "H03_goal_proven_human_auto"
+      ]
+    },
+    "good_honesty_comments.py": {
+      "kind": "allowlist_good",
+      "marker": "honesty-fixture-good",
+      "never_train": true,
+      "covers_fp_classes": [
+        "h05_string_false_auto_lfg",
+        "h05_non_claims_inventory",
+        "h05_bold_no_auto_lfg",
+        "h07_forbidden_auto_promote_true_string",
+        "h10_does_not_unlock_outer_rsi"
+      ],
+      "expected_rules": []
+    },
+    "bad_machine_success_as_field.py": {
+      "kind": "adversarial_bad",
+      "marker": "honesty-fixture-bad",
+      "never_train": true,
+      "covers": ["machine_success_as_field_proven"],
+      "expected_rules": ["H13_machine_success_as_field"]
+    },
+    "good_dual_gate_allowlist.py": {
+      "kind": "allowlist_good",
+      "marker": "honesty-fixture-good",
+      "never_train": true,
+      "covers_fp_classes": [
+        "h05_false_stamp",
+        "h05_string_false_auto_lfg",
+        "h05_bold_no_auto_lfg",
+        "h05_non_claims_inventory",
+        "h07_forbidden_auto_promote_true_string",
+        "h10_does_not_unlock_outer_rsi"
+      ],
+      "expected_rules": []
+    }
+  }
+}
