@@ -4,69 +4,129 @@ A curated library of Grok / agent skills for high-agency software engineering, i
 
 These skills were developed for building ambitious AI systems, multi-agent factories, gap analysis, zero-based redesign, and continuous improvement loops.
 
-## Skills Included
-
-| Skill | Description |
-|-------|-------------|
-| **adhd** | Parallel divergent ideation with multiple cognitive frames |
-| **comprehensive-codebase-review** | Full-repo proactive audit (bugs, security, performance, debt) |
-| **creativity-engine** | Metaphorical, lateral, multi-future creative thinking |
-| **elon** | Elon-style engineering: requirements → delete → simplify → accelerate |
-| **factory-fanout** | Fan ideas horizontally through software-factory |
-| **gap-to-plan** | Measure current vs aim and produce assemblable plans |
-| **i-have-adhd** | Shape output for ADHD readers (action-first, numbered steps) |
-| **idea-expansion-planner** | First-, second-, and third-order effects analysis |
-| **instrument-analytics** | Add structured analytics, metrics, traces, error reporting |
-| **lfg** | Full outer ship loop: research → gap-to-plan → gauntlet → review |
-| **lfg-all** | Multi-aim ship from ranked suggestions |
-| **qc-report** | Meta quality-control report orchestrating specialized checks |
-| **rca-from-analytics** | Root-cause analysis from logs/traces/analytics |
-| **req** | Requirements inventory before zeroing |
-| **slice-deconstruct** | Recursively cut multi-month series into gap-ready packs |
-| **software-factory** | Core factory engine from directional aim to production software |
-| **suggest** | High-ROI next aims for /lfg |
-| **suggest-100-ideas** | ~100 ranked & clustered ideas from an aim |
-| **suggest-next-5** | Top 5 next projects with execution path |
-| **test-conflict** | Shared-state races and contention testing |
-| **test-exploratory** | Adversarial exploratory sessions + synthetic human journeys |
-| **test-maintainability** | Audit the test suite itself |
-| **test-production-readiness** | Final go/no-go production readiness gate |
-| **test-smoke** | Minimal critical-path smoke suite |
-| **universal-gauntlet** | High-effort builder ↔ critic loops until quality bar is met |
-| **zero** | Zero-based redesign (mission, requirements, from-scratch plan) |
-| **zero2** | Code-level mapping after /zero |
+This repo is the **cross-device source of truth**. Install into a Grok skills dir; do not treat any one working checkout as canonical.
 
 ## Installation
 
-These skills work with the Grok skill-installer.
-
-### Install a single skill
-
 ```bash
-# Using the skill-installer skill (recommended)
 bash /root/.grok/skills/skill-installer/scripts/install-skill.sh \
   --repo avatardebris-debug/skill-library \
   --path skills/<skill-name> \
   --ref main
 ```
 
-Or with a full URL:
+## Quality stacks
 
-```bash
-bash /root/.grok/skills/skill-installer/scripts/install-skill.sh \
-  --url https://github.com/avatardebris-debug/skill-library/tree/main/skills/<skill-name>
-```
+Two complementary stacks. Do not collapse them.
 
-### Install all skills (example)
+- **Factory self-QC** — `factory-qc` + `qc-*` leaves + `findings-triage`. Measures factory health. Green ≠ `field_proven`.
+- **Product QA/QC** — `test-strategy` → labs (`test-smoke`, exploratory, conflict, performance, security, resilience, field-test) → `test-production-readiness`.
 
-You can loop over the directories or install them one by one.
+## Skills
+
+### Ideation and planning
+
+| Skill | Role |
+|-------|------|
+| adhd | Parallel divergent ideation |
+| autosuggest | Unattended suggest loop |
+| creativity-engine | Lateral / multi-future thinking |
+| deconstructor | Break a thing into parts |
+| dedede | Series deconstruction readiness |
+| idea-expansion-planner | First/second/third-order effects |
+| idea-plan | Master plan contract |
+| phase-plan | Phase + task contract |
+| planner | Generic planner |
+| gap-to-plan | Current vs aim → plans |
+| gap-to-goal | Gap verdict vs a goal |
+| slice-deconstruct | Multi-month slice → gap packs |
+| suggest / suggest-next-5 / suggest-100-ideas | Next aims |
+| think-route | Route how to think |
+
+### Factory and ship loops
+
+| Skill | Role |
+|-------|------|
+| software-factory | Aim → idea → streams → QC → vote → gauntlet |
+| factory-fanout / fanout | Horizontal factory runs |
+| factory-improve | Post-field factory product routing |
+| factory-qc / factory-qc-handoff | Factory health measure + soft next |
+| lfg / lfg-all / encore | Full / multi / residual ship loops |
+| universal-gauntlet | Builder ↔ critic until bar |
+| elon / elon1 / elon2 | Requirements → delete → restore → accelerate |
+| zero / zero2 | Zero-based redesign + code map |
+| req | Requirements inventory |
+| restore | Human add-back after zero |
+| admit-fuel | Fuel admission rubric |
+| blocker-identifier | Name blockers |
+| pile-shrink | Shrink the pile |
+
+### Factory QC leaves
+
+| Skill | Role |
+|-------|------|
+| qc-static | Lint/type if tools exist |
+| qc-contracts | Public API freeze + path-refs |
+| qc-honesty | Dual-gate / soft≠execute smells |
+| qc-errors | Bare except / swallowed errors |
+| qc-tests | Contract pytest + weak-test heuristic |
+| qc-security | Factory secrets / allow_live / shell-safety |
+| qc-runtime-control | Static stall proxies |
+| qc-coupling-debt | LOC god-modules |
+| qc-temporal | Git churn / grow / repeat-fix |
+| qc-report | Meta product/static quality report |
+| findings-triage | Findings → buckets → packs |
+
+### Product test labs
+
+| Skill | Role |
+|-------|------|
+| test-strategy | Risk plan and skill routing |
+| acceptance-from-req | REQUIREMENTS.md → Given/When/Then |
+| test-smoke | Critical-path e2e |
+| test-exploratory | Synthetic humans + adversarial tail |
+| test-conflict | Races / shared state |
+| test-performance | Load / soak / spike vs SLOs |
+| test-security | Product threat sketch + probes |
+| test-resilience | Fault injection / chaos |
+| test-maintainability | Health of the test suite |
+| test-production-readiness | GO / NO-GO |
+| field-test | Product field plan+run (no self-prove) |
+| impact-tests | Diff → pytest targets |
+| instrument-analytics | Event schema + queries |
+| rca-from-analytics | Telemetry → ranked causes |
+
+### Review, debug, ops
+
+| Skill | Role |
+|-------|------|
+| check-work | Session verifier subagent |
+| code-review | Diff review |
+| comprehensive-codebase-review | Full-repo audit |
+| harsh-critic | Scorecard critic |
+| systematic-debugging | Root-cause discipline |
+| json-fixture-diff | Fixture compare |
+| overnight-ops-audit | Overnight receipt audit |
+| morning-ops-pack | Morning ops pack |
+| session-distill | Distill session traces |
+
+### Meta / UX
+
+| Skill | Role |
+|-------|------|
+| create-skill | Author a new skill |
+| help | Skill help |
+| i-have-adhd | ADHD-shaped output |
+| imagine | Image generation workflow |
 
 ## Structure
 
 ```
 skills/
   <skill-name>/
-    SKILL.md          # Required frontmatter + instructions
+    SKILL.md
+    scripts/      # optional
+    references/   # optional
 ```
 
 ## License
@@ -75,6 +135,7 @@ MIT (where declared). Individual skills may carry their own license in the front
 
 ## Notes
 
-- These are the **custom / user skills**, not the platform-bundled ones (docx, pdf, pptx, xlsx, ffmpeg, etc.).
-- Skills use progressive disclosure: name + description are always visible; body loads on demand.
-- Many of these form a coherent stack for ambitious agentic development (suggest → gap-to-plan → software-factory → gauntlet → tests → qc).
+- Custom / user skills only — not platform-bundled docx/pdf/pptx/xlsx/ffmpeg.
+- Progressive disclosure: name + description always visible; body loads on demand.
+- `qc-security` ≠ `test-security`. Factory leaf vs product lab.
+- `factory-qc` green ≠ `field_proven`.
