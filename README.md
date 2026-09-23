@@ -51,6 +51,9 @@ Two complementary stacks. Do not collapse them.
 | factory-fanout / fanout | Horizontal factory runs |
 | factory-improve | Post-field factory product routing |
 | factory-qc / factory-qc-handoff | Factory health measure + soft next |
+| after-series-qc | Post-series-loop QC playlist (morning → factory-qc → handoff; `--auto report\|soft`) |
+| overnight-series | Capped overnight waves of series-loop + after-series-qc (no invent/gauntlet) |
+| aim-to-series | Large aim → series pack under `notes/series/<slug>`; stops for human choose-ONE |
 | lfg / lfg-all / encore | Full / multi / residual ship loops |
 | universal-gauntlet | Builder ↔ critic until bar |
 | elon / elon1 / elon2 | Requirements → delete → restore → accelerate |
